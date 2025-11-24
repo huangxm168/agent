@@ -1,0 +1,62 @@
+[
+  {
+    "countryCode": "AE",
+    "countryName": "阿联酋"
+  },
+  {
+    "countryCode": "AU",
+    "countryName": "澳大利亚"
+  },
+  {
+    "countryCode": "CA",
+    "countryName": "加拿大"
+  },
+  {
+    "countryCode": "DE",
+    "countryName": "德国"
+  },
+  {
+    "countryCode": "FR",
+    "countryName": "法国"
+  },
+  {
+    "countryCode": "GB",
+    "countryName": "英国"
+  },
+  {
+    "countryCode": "IL",
+    "countryName": "以色列"
+  },
+  {
+    "countryCode": "JP",
+    "countryName": "日本"
+  },
+  {
+    "countryCode": "KR",
+    "countryName": "韩国"
+  },
+  {
+    "countryCode": "NL",
+    "countryName": "荷兰"
+  },
+  {
+    "countryCode": "NZ",
+    "countryName": "新西兰"
+  },
+  {
+    "countryCode": "RU",
+    "countryName": "俄罗斯"
+  },
+  {
+    "countryCode": "SG",
+    "countryName": "新加坡"
+  },
+  {
+    "countryCode": "TR",
+    "countryName": "土耳其"
+  },
+  {
+    "countryCode": "US",
+    "countryName": "美国"
+  }
+]

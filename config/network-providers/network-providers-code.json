@@ -1,0 +1,32 @@
+[
+  {
+    "providerCode": "CM",
+    "providerName": "中国移动",
+    "providerShortName": "移动"
+  },
+  {
+    "providerCode": "CU",
+    "providerName": "中国联通",
+    "providerShortName": "联通"
+  },
+  {
+    "providerCode": "CT",
+    "providerName": "中国电信",
+    "providerShortName": "电信"
+  },
+  {
+    "providerCode": "CE",
+    "providerName": "中国教育和科研计算机网",
+    "providerShortName": "教育"
+  },
+  {
+    "providerCode": "AL",
+    "providerName": "阿里云",
+    "providerShortName": "阿里云"
+  },
+  {
+    "providerCode": "GG",
+    "providerName": "Google",
+    "providerShortName": "谷歌"
+  }
+]

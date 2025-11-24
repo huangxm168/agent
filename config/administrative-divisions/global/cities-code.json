@@ -1,0 +1,224 @@
+[
+  {
+    "countryCode": "AE",
+    "countryName": "阿联酋",
+    "cities": [
+      {
+        "cityCode": "DXB",
+        "cityName": "迪拜"
+      }
+    ]
+  },
+  {
+    "countryCode": "AU",
+    "countryName": "澳大利亚",
+    "cities": [
+      {
+        "cityCode": "MEL",
+        "cityName": "墨尔本"
+      },
+      {
+        "cityCode": "SYD",
+        "cityName": "悉尼"
+      }
+    ]
+  },
+  {
+    "countryCode": "CA",
+    "countryName": "加拿大",
+    "cities": [
+      {
+        "cityCode": "YMQ",
+        "cityName": "蒙特利尔"
+      },
+      {
+        "cityCode": "YTO",
+        "cityName": "多伦多"
+      },
+      {
+        "cityCode": "YVR",
+        "cityName": "温哥华"
+      }
+    ]
+  },
+  {
+    "countryCode": "DE",
+    "countryName": "德国",
+    "cities": [
+      {
+        "cityCode": "BER",
+        "cityName": "柏林"
+      },
+      {
+        "cityCode": "FRA",
+        "cityName": "法兰克福"
+      },
+      {
+        "cityCode": "HAM",
+        "cityName": "汉堡"
+      },
+      {
+        "cityCode": "MUC",
+        "cityName": "慕尼黑"
+      }
+    ]
+  },
+  {
+    "countryCode": "FR",
+    "countryName": "法国",
+    "cities": [
+      {
+        "cityCode": "PAR",
+        "cityName": "巴黎"
+      }
+    ]
+  },
+  {
+    "countryCode": "GB",
+    "countryName": "英国",
+    "cities": [
+      {
+        "cityCode": "LON",
+        "cityName": "伦敦"
+      },
+      {
+        "cityCode": "MAN",
+        "cityName": "曼彻斯特"
+      }
+    ]
+  },
+  {
+    "countryCode": "IL",
+    "countryName": "以色列",
+    "cities": [
+      {
+        "cityCode": "TLV",
+        "cityName": "特拉维夫"
+      }
+    ]
+  },
+  {
+    "countryCode": "JP",
+    "countryName": "日本",
+    "cities": [
+      {
+        "cityCode": "OSA",
+        "cityName": "大阪"
+      },
+      {
+        "cityCode": "TYO",
+        "cityName": "东京"
+      }
+    ]
+  },
+  {
+    "countryCode": "KR",
+    "countryName": "韩国",
+    "cities": [
+      {
+        "cityCode": "SEL",
+        "cityName": "首尔"
+      }
+    ]
+  },
+  {
+    "countryCode": "NL",
+    "countryName": "荷兰",
+    "cities": [
+      {
+        "cityCode": "AMS",
+        "cityName": "阿姆斯特丹"
+      }
+    ]
+  },
+  {
+    "countryCode": "NZ",
+    "countryName": "新西兰",
+    "cities": [
+      {
+        "cityCode": "AKL",
+        "cityName": "奥克兰"
+      }
+    ]
+  },
+  {
+    "countryCode": "RU",
+    "countryName": "俄罗斯",
+    "cities": [
+      {
+        "cityCode": "LED",
+        "cityName": "圣彼得堡"
+      },
+      {
+        "cityCode": "MOW",
+        "cityName": "莫斯科"
+      }
+    ]
+  },
+  {
+    "countryCode": "SG",
+    "countryName": "新加坡",
+    "cities": [
+      {
+        "cityCode": "SIN",
+        "cityName": "新加坡"
+      }
+    ]
+  },
+  {
+    "countryCode": "TR",
+    "countryName": "土耳其",
+    "cities": [
+      {
+        "cityCode": "ANK",
+        "cityName": "安卡拉"
+      },
+      {
+        "cityCode": "IST",
+        "cityName": "伊斯坦布尔"
+      }
+    ]
+  },
+  {
+    "countryCode": "US",
+    "countryName": "美国",
+    "cities": [
+      {
+        "cityCode": "ATL",
+        "cityName": "亚特兰大"
+      },
+      {
+        "cityCode": "CHI",
+        "cityName": "芝加哥"
+      },
+      {
+        "cityCode": "DFW",
+        "cityName": "达拉斯"
+      },
+      {
+        "cityCode": "HNL",
+        "cityName": "檀香山"
+      },
+      {
+        "cityCode": "LAX",
+        "cityName": "洛杉矶"
+      },
+      {
+        "cityCode": "NYC",
+        "cityName": "纽约"
+      },
+      {
+        "cityCode": "SFO",
+        "cityName": "旧金山"
+      },
+      {
+        "cityCode": "SJC",
+        "cityName": "圣何塞"
+      },
+      {
+        "cityCode": "SEA",
+        "cityName": "西雅图"
+      }
+    ]
+  }
+]

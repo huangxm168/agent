@@ -1,0 +1,188 @@
+targets:
+  - target_id: 1101CM                  # 该网络服务商目标唯一代码（第 1-4 位是城市代码；第 5-6 位是网络服务商代码：移动为 CM、联通为 CU、电信为 CT，谷歌为 GG，阿里云为 AL，等等）
+    city_id: 1101                      # 北京，城市唯一代码（对于中国大陆，第 1-2 位是省份代码，第 3-4 位是城市代码；对于中国港澳台，第 1 位是省份代码，第 2-4 位是城市代码；对于国际城市，第 1 位是 0，第 2-4 位是城市代码，详见 config/administrative-division/cn/cities-code.json）
+    target_code: beijing_cmcc          # 该网络服务商检测目标唯一标识符（城市罗马字母 + 下划线 + 网络服务商缩写）
+    target_name: 北京移动               # 网络服务商的展示名称，用于日志等可视化输出（城市中文名 + 网络服务商中文简称）
+    probes:                            # 监测目标列表，可以配置多种类型（icmp、tcp）
+      - type: icmp                     # 探测类型
+        addrs:
+          - ip: 112.34.111.194         # ICMP Ping 主目标
+          # - ip: 0.0.0.0              # ICMP Ping 备用目标 1
+          # - ip: 0.0.0.0              # ICMP Ping 备用目标 2
+      - type: tcp
+        addrs:                                      # TCP Ping 目标，可以配置多个，每个目标包含 host 和 port
+          - host: bj-cm-v4.ip.zstaticcdn.com        # TCP Ping 主目标域名
+            port: 80                                # TCP Ping 主目标域名端口
+          # - host: example.com                     # TCP Ping 备用目标域名 1
+          #   port: 80                              # TCP Ping 备用目标域名 1 端口
+
+  - target_id: 1101CU
+    city_id: 1101
+    target_code: beijing_cu
+    target_name: 北京联通
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 111.206.209.44
+      - type: tcp
+        addrs:
+          - host: bj-cu-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 1101CT
+    city_id: 1101
+    target_code: beijing_ct
+    target_name: 北京电信
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 49.7.37.74
+      - type: tcp
+        addrs:
+          - host: bj-ct-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 3301CM
+    city_id: 3301
+    target_code: hangzhou_cmcc
+    target_name: 杭州移动
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 117.147.213.41
+      - type: tcp
+        addrs:
+          - host: zj-cm-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 3301CU
+    city_id: 3301
+    target_code: hangzhou_cu
+    target_name: 杭州联通
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 101.69.194.224
+      - type: tcp
+        addrs:
+          - host: zj-cu-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 3301CT
+    city_id: 3301
+    target_code: hangzhou_ct
+    target_name: 杭州电信
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 115.220.14.91
+      - type: tcp
+        addrs:
+          - host: tcp.homedata.dev
+            port: 55555
+          - host: zj-hangzhou-ct-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 4101CM
+    city_id: 4101
+    target_code: zhengzhou_cmcc
+    target_name: 郑州移动
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 111.7.99.220
+      - type: tcp
+        addrs:
+          - host: ha-zhengzhou-cm-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 4101CU
+    city_id: 4101
+    target_code: zhengzhou_cu
+    target_name: 郑州联通
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 123.6.65.101
+      - type: tcp
+        addrs:
+          - host: ha-cu-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 4101CT
+    city_id: 4101
+    target_code: zhengzhou_ct
+    target_name: 郑州电信
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 171.15.110.220
+      - type: tcp
+        addrs:
+          - host: ha-zhengzhou-ct-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 4401CM
+    city_id: 4401
+    target_code: guangzhou_cmcc
+    target_name: 广州移动
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 183.240.65.191
+      - type: tcp
+        addrs:
+          - host: gd-guangzhou-cm-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 4401CU
+    city_id: 4401
+    target_code: guangzhou_cu
+    target_name: 广州联通
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 112.90.211.100
+      - type: tcp
+        addrs:
+          - host: gd-cu-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 4401CT
+    city_id: 4401
+    target_code: guangzhou_ct
+    target_name: 广州电信
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 183.36.23.111
+      - type: tcp
+        addrs:
+          - host: gd-guangzhou-ct-v4.ip.zstaticcdn.com
+            port: 80
+
+  - target_id: 8HKGGG
+    city_id: 8HKG
+    target_code: hongkong_google
+    target_name: 香港谷歌
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 34.150.84.19
+      # - type: tcp
+      #   addrs:
+      #     - host: example.com
+      #       port: 80
+
+  - target_id: 0FRAGG
+    city_id: 0FRA
+    target_code: frankfurt_google
+    target_name: 法兰克福谷歌
+    probes:
+      - type: icmp
+        addrs:
+          - ip: 34.141.72.86
+      # - type: tcp
+      #   addrs:
+      #     - host: example.com
+      #       port: 80
