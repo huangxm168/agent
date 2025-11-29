@@ -1,47 +1,55 @@
+[简体中文](README.zh-CN.md) | English
+
 # VPS Agent
 
-VPS 网络延迟监测探针，用于向主控端上报网络延迟数据。
+A VPS network latency monitoring probe for reporting network latency data to the control server.
 
-## 下载
+## Quick Start
 
-```bash
-curl -L https://github.com/huangxm168/agent/releases/latest/download/vps-agent -o vps-agent
-chmod +x vps-agent
-```
-
-## 配置
-
-运行前需要配置环境变量。
-
-## 运行
+Use the deployment script for one-click installation and configuration:
 
 ```bash
-# 查看版本
-./vps-agent --version
-
-# 前台运行
-./vps-agent
-
-# 后台运行（推荐使用 systemd 管理）
+bash <(curl -sL vps-agent.sh)
 ```
 
-## 部署目录结构
+## Deployment Script Features
+
+The deployment script provides an interactive menu with the following features:
+
+- **Deploy Service**: Environment check, version selection, configuration file download, environment variable configuration, systemd service installation
+- **Update Service**: Full update, binary-only update, configuration-only update, modify environment variable configuration
+- **Service Management**: View status, start, stop, restart
+- **View Logs**: View historical logs, real-time log tracking
+- **Uninstall**: Stop service, delete files, clean up systemd configuration
+
+## Deployment Directory Structure
 
 ```
 /opt/agent/
-├── vps-agent          # 二进制文件
-├── .env               # 环境变量配置
+├── vps-agent              # Binary file
+├── .env                   # Environment variable configuration
+├── .env.example           # Environment variable template
 ├── config/
-│   └── probe-targets.yaml  # 监测目标配置
-└── logs/              # 日志目录（自动创建）
+│   ├── probe-targets.yaml # Monitoring target configuration
+│   ├── region-codes.json  # Administrative region codes
+│   └── isp-codes.json     # Network service provider codes
+└── logs/                  # Log directory (auto-created)
 ```
 
-## 更新
+## Manual Operations
 
 ```bash
-# 下载最新版本
-curl -L https://github.com/huangxm168/agent/releases/latest/download/vps-agent -o /opt/agent/vps-agent
+# View version
+/opt/agent/vps-agent --version
 
-# 重启服务
+# Manually start/stop service
+systemctl start vps-agent
+systemctl stop vps-agent
 systemctl restart vps-agent
+
+# View service status
+systemctl status vps-agent
+
+# View real-time logs
+journalctl -u vps-agent -f
 ```

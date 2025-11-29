@@ -1,0 +1,167 @@
+# 专有许可协议 / Proprietary License
+
+**版权所有 © 2025 huangxm168。保留所有权利。**
+
+**Copyright © 2025 huangxm168. All Rights Reserved.**
+
+---
+
+## 中文版本
+
+### 第一条 定义
+
+- "本软件"指本仓库中包含的所有源代码、二进制文件、配置文件、文档及任何相关材料。
+- "版权人"指 huangxm168。
+- "使用者"指访问、下载或以任何方式接触本软件的任何个人或实体。
+
+### 第二条 许可范围
+
+本软件为专有软件，**仅供版权人个人使用**。除非获得版权人的明确书面授权，任何个人或实体均不得：
+
+1. **使用**：以任何方式使用、运行或部署本软件；
+2. **复制**：复制、下载或保存本软件的任何部分（仅供查看的临时缓存除外）；
+3. **修改**：修改、改编或创建基于本软件的衍生作品；
+4. **分发**：分发、发布、转让、出售、出租或以任何方式向第三方提供本软件；
+5. **逆向工程**：对本软件进行反编译、反汇编、逆向工程或任何形式的源代码还原尝试；
+6. **商业用途**：将本软件用于任何商业目的；
+7. **Fork 或克隆**：未经授权在任何代码托管平台上 fork 或克隆本仓库的行为构成对本协议的违反。
+
+### 第三条 查看权限
+
+使用者可以在本仓库的托管平台上在线查看本软件的代码，但此查看权限不构成任何形式的使用许可。
+
+### 第四条 授权申请
+
+如需获得本软件的使用授权，请通过以下方式联系版权人：
+
+- 电子邮件：[请补充邮箱地址]
+
+版权人保留自行决定是否授予授权的权利，且无需说明理由。
+
+### 第五条 免责声明
+
+本软件按"原样"提供，不附带任何明示或暗示的保证，包括但不限于对适销性、特定用途适用性和非侵权性的保证。在任何情况下，版权人均不对因使用或无法使用本软件而产生的任何直接、间接、附带、特殊、惩罚性或后果性损害承担责任。
+
+### 第六条 违规后果
+
+任何违反本许可协议的行为均构成对版权人知识产权的侵犯。版权人保留对违规者采取法律行动的权利，包括但不限于：
+
+1. 要求立即停止侵权行为；
+2. 要求赔偿因侵权造成的一切损失；
+3. 追究相应的法律责任。
+
+### 第七条 条款修改
+
+版权人保留随时修改本许可协议的权利。修改后的条款一经在本仓库中更新即视为生效。使用者有责任定期查阅本许可协议以了解任何变更。
+
+### 第八条 生效日期
+
+本许可协议自 2025 年 11 月 29 日起生效，在版权人发布新版本之前持续有效。
+
+### 第九条 语言版本
+
+本许可协议以中文和英文两种语言提供。如中文版本与英文版本之间存在任何不一致或歧义，以中文版本为准。
+
+### 第十条 管辖法律与争议解决
+
+本许可协议的订立、效力、解释、履行和争议解决均适用中华人民共和国法律（不包括港澳台地区法律）。因本许可协议引起的或与本许可协议相关的任何争议，应提交至版权人由政府颁发的身份证件所载住址所在地有管辖权的人民法院诉讼解决。
+
+### 第十一条 可分割性
+
+如本许可协议的任何条款被有管辖权的法院认定为无效、非法或不可执行，该条款应在必要的最小范围内进行修改以使其有效、合法且可执行，或在无法修改时予以删除。其余条款的有效性、合法性和可执行性不受影响，继续保持完全效力。
+
+### 第十二条 完整协议
+
+本许可协议构成版权人与使用者之间就本软件达成的完整协议，取代双方之前就本软件所作的所有口头或书面陈述、协议或谅解。
+
+### 第十三条 权利保留
+
+版权人未能行使或延迟行使本许可协议项下的任何权利，不构成对该权利或任何其他权利的放弃。版权人对任何违约行为的单次或部分放弃，不构成对后续违约行为的放弃。
+
+### 第十四条 第三方权利
+
+本许可协议仅约束版权人与使用者，不授予任何第三方任何权利或利益。任何非本协议当事方的个人或实体均无权依据本协议主张任何权利或执行本协议的任何条款。
+
+---
+
+## English Version
+
+### Article 1: Definitions
+
+- "Software" refers to all source code, binary files, configuration files, documentation, and any related materials contained in this repository.
+- "Copyright Holder" refers to huangxm168.
+- "User" refers to any individual or entity that accesses, downloads, or interacts with the Software in any way.
+
+### Article 2: Scope of License
+
+This Software is proprietary and is **for the sole use of the Copyright Holder**. Unless explicit written authorization is obtained from the Copyright Holder, no individual or entity may:
+
+1. **Use**: Use, run, or deploy the Software in any manner;
+2. **Copy**: Copy, download, or store any part of the Software (except for temporary caching for viewing purposes only);
+3. **Modify**: Modify, adapt, or create derivative works based on the Software;
+4. **Distribute**: Distribute, publish, transfer, sell, rent, or otherwise make the Software available to third parties;
+5. **Reverse Engineer**: Decompile, disassemble, reverse engineer, or attempt any form of source code recovery of the Software;
+6. **Commercial Use**: Use the Software for any commercial purpose;
+7. **Fork or Clone**: Any unauthorized forking or cloning of this repository on any code hosting platform constitutes a violation of this Agreement.
+
+### Article 3: Viewing Permission
+
+Users may view the code of the Software online on the hosting platform of this repository, but such viewing permission does not constitute any form of license to use.
+
+### Article 4: Authorization Request
+
+To obtain authorization to use this Software, please contact the Copyright Holder via:
+
+- Email: [Please fill in email address]
+
+The Copyright Holder reserves the right to grant or deny authorization at their sole discretion without providing any reason.
+
+### Article 5: Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES ARISING OUT OF OR IN CONNECTION WITH THE USE OR INABILITY TO USE THE SOFTWARE.
+
+### Article 6: Consequences of Violation
+
+Any violation of this License Agreement constitutes an infringement of the Copyright Holder's intellectual property rights. The Copyright Holder reserves the right to take legal action against violators, including but not limited to:
+
+1. Demanding immediate cessation of infringing activities;
+2. Claiming compensation for all losses caused by the infringement;
+3. Pursuing corresponding legal liability.
+
+### Article 7: Modification of Terms
+
+The Copyright Holder reserves the right to modify this License Agreement at any time. Modified terms shall become effective immediately upon being updated in this repository. Users are responsible for regularly reviewing this License Agreement to be aware of any changes.
+
+### Article 8: Effective Date
+
+This License Agreement shall take effect on November 29, 2025, and shall remain in effect until a new version is published by the Copyright Holder.
+
+### Article 9: Language Version
+
+This License Agreement is provided in both Chinese and English. In the event of any inconsistency or ambiguity between the Chinese version and the English version, the Chinese version shall prevail.
+
+### Article 10: Governing Law and Dispute Resolution
+
+The formation, validity, interpretation, performance, and dispute resolution of this License Agreement shall be governed by the laws of the People's Republic of China (excluding the laws of Hong Kong, Macau, and Taiwan). Any dispute arising out of or in connection with this License Agreement shall be submitted to the competent People's Court at the location of the Copyright Holder's registered residential address as stated in government-issued identification documents.
+
+### Article 11: Severability
+
+If any provision of this License Agreement is held by a court of competent jurisdiction to be invalid, illegal, or unenforceable, such provision shall be modified to the minimum extent necessary to make it valid, legal, and enforceable, or deleted if modification is not possible. The validity, legality, and enforceability of the remaining provisions shall not be affected and shall continue in full force and effect.
+
+### Article 12: Entire Agreement
+
+This License Agreement constitutes the entire agreement between the Copyright Holder and the User with respect to the Software and supersedes all prior oral or written representations, agreements, or understandings between the parties regarding the Software.
+
+### Article 13: Reservation of Rights
+
+The failure or delay of the Copyright Holder to exercise any right under this License Agreement shall not constitute a waiver of such right or any other right. A single or partial waiver by the Copyright Holder of any breach shall not constitute a waiver of any subsequent breach.
+
+### Article 14: No Third-Party Rights
+
+This License Agreement is binding only upon the Copyright Holder and the User and does not confer any rights or benefits upon any third party. No individual or entity that is not a party to this Agreement shall have the right to assert any rights or enforce any provision under this Agreement.
+
+---
+
+**huangxm168**
+
+**2025-11-29**
