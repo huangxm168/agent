@@ -9,7 +9,7 @@ set -e
 # ============================================================
 
 # 路径配置
-INSTALL_DIR="/opt/agent"
+INSTALL_DIR="/opt/vps-agent"
 BINARY_NAME="vps-agent"
 SERVICE_NAME="vps-agent"
 ENV_FILE="$INSTALL_DIR/.env"
