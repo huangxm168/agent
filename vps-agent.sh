@@ -1739,11 +1739,11 @@ generate_env_file() {
         targets_content="${targets_content}${target}"$'\n'
     done
 
-    # 3. 在 "# Ping Targets" 区块的分隔线后插入目标
+    # 3. 在 "# Ping 监测目标" 区块的分隔线后插入目标
     # 模板结构：
-    #   ########################
-    #   # Ping Targets
-    #   ########################
+    #   # =========================
+    #   # Ping 监测目标
+    #   # =========================
     #   <空行> <- 在这里插入
     local temp_file=$(mktemp)
     local found_header=false
@@ -1753,10 +1753,10 @@ generate_env_file() {
     while IFS= read -r line; do
         echo "$line" >> "$temp_file"
 
-        if [[ "$line" == "# Ping Targets" ]]; then
+        if [[ "$line" == "# Ping 监测目标" ]]; then
             found_header=true
             wait_for_separator=true
-        elif $wait_for_separator && [[ "$line" == "########################" ]]; then
+        elif $wait_for_separator && [[ "$line" == "# =========================" ]]; then
             # 在分隔线后插入空行和目标
             echo "" >> "$temp_file"
             printf "%s" "$targets_content" >> "$temp_file"
@@ -3551,7 +3551,7 @@ modify_probe_targets() {
         targets_content="${targets_content}${target}"$'\n'
     done
 
-    # 3. 在 "# Ping Targets" 区块的分隔线后插入目标
+    # 3. 在 "# Ping 监测目标" 区块的分隔线后插入目标
     local temp_file=$(mktemp)
     local found_header=false
     local wait_for_separator=false
@@ -3560,10 +3560,10 @@ modify_probe_targets() {
     while IFS= read -r line; do
         echo "$line" >> "$temp_file"
 
-        if [[ "$line" == "# Ping Targets" ]]; then
+        if [[ "$line" == "# Ping 监测目标" ]]; then
             found_header=true
             wait_for_separator=true
-        elif $wait_for_separator && [[ "$line" == "########################" ]]; then
+        elif $wait_for_separator && [[ "$line" == "# =========================" ]]; then
             # 在分隔线后插入空行和目标
             echo "" >> "$temp_file"
             printf "%s" "$targets_content" >> "$temp_file"
