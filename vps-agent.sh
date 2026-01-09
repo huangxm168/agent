@@ -331,11 +331,15 @@ check_environment() {
         has_error=true
     fi
 
-    # 检查/安装 yq
-    if check_command yq; then
+    # 检查/安装 yq（必须是 Go 版本 mikefarah/yq）
+    if check_yq_version; then
         print_success "yq: 可用"
     else
-        print_info "正在安装 yq..."
+        if check_command yq; then
+            print_warn "检测到非兼容版本的 yq，正在安装兼容版本..."
+        else
+            print_info "正在安装 yq..."
+        fi
         if install_yq; then
             print_success "yq: 已安装"
         else
@@ -352,6 +356,15 @@ check_environment() {
     fi
 
     print_success "环境检查通过"
+}
+
+# 检查是否为 Go 版本的 yq（mikefarah/yq）
+check_yq_version() {
+    if ! check_command yq; then
+        return 1
+    fi
+    # Go 版本的 yq 输出包含 "mikefarah/yq"
+    yq --version 2>&1 | grep -q "mikefarah/yq"
 }
 
 # 安装 yq
