@@ -1097,58 +1097,134 @@ config_hmac_secret() {
     fi
 }
 
-# 配置 SERVER_URL
+# 验证单个 Server URL 格式
+# 参数：$1=URL 值
+# 返回：0=验证通过，1=验证失败（错误信息已输出，含前置空行）
+validate_server_url() {
+    local url="$1"
+
+    # 检查非空
+    if [ -z "$url" ]; then
+        echo ""
+        print_error "URL 不能为空"
+        return 1
+    fi
+
+    # 检查协议前缀
+    if ! [[ "$url" =~ ^https?:// ]]; then
+        echo ""
+        print_error "URL 必须以 http:// 或 https:// 开头"
+        return 1
+    fi
+
+    # 检查域名格式（必须包含至少一个点，且点后有内容）
+    local url_without_protocol="${url#*://}"
+    local domain="${url_without_protocol%%/*}"
+
+    if ! [[ "$domain" =~ \.[a-zA-Z]{2,} ]]; then
+        echo ""
+        print_error "域名格式无效，示例：https://example.com/api/report"
+        return 1
+    fi
+
+    # 检查是否包含路径（域名后必须有 /xxx）
+    local path_part="${url_without_protocol#*/}"
+    if [ "$path_part" = "$url_without_protocol" ] || [ -z "$path_part" ]; then
+        echo ""
+        print_error "必须包含 API 路径，示例：https://example.com/api/report"
+        return 1
+    fi
+
+    return 0
+}
+
+# 配置 SERVER_URL_1/2/3
+# 参数：$1=allow_skip（true=允许按 Enter 跳过保留原值，false=必填）
 config_server_url() {
-    echo -e "${COLOR_INFO}请输入 Server 接收端 URL：${NC}"
+    local allow_skip="${1:-false}"
+    local current_urls=()
+    local new_urls=()
+
+    echo -e "${COLOR_INFO}请配置 Server 接收端 URL：${NC}"
     echo ""
-    print_env_hint "需输入完整的 API URL，包含协议、域名和路径"
-    print_env_hint "示例：https://your-server.com/api/latency/report"
+    print_env_hint "三个 Server 端 URL 将用于上报数据阶段的重试和故障转移机制"
+    print_env_hint "URL 1 将用于首次尝试和首次重试，URL 2 和 URL 3 将依次用于第二次和第三次重试"
+    echo ""
+    print_env_hint "必须全部填写三个 Server 端 URL，且不可重复"
+    if [ "$allow_skip" = true ]; then
+        echo ""
+        print_env_hint "按 Enter 跳过可保留当前配置"
+    fi
     echo ""
 
-    while true; do
-        ENV_SERVER_URL=$(get_input "SERVER_URL")
+    # 如果允许跳过，先读取当前值
+    if [ "$allow_skip" = true ]; then
+        for i in 1 2 3; do
+            read_env_value "SERVER_URL_$i"
+            current_urls[$i]="$ENV_VALUE"
+        done
+    fi
 
-        # 检查非空
-        if [ -z "$ENV_SERVER_URL" ]; then
-            echo ""
-            print_error "SERVER_URL 不能为空"
-            echo ""
-            continue
-        fi
+    # 依次收集三个 URL
+    for i in 1 2 3; do
+        while true; do
+            local input=$(get_input "SERVER_URL_$i")
 
-        # 检查协议前缀
-        if ! [[ "$ENV_SERVER_URL" =~ ^https?:// ]]; then
-            echo ""
-            print_error "SERVER_URL 必须以 http:// 或 https:// 开头"
-            echo ""
-            continue
-        fi
+            # 处理空输入
+            if [ -z "$input" ]; then
+                if [ "$allow_skip" = true ] && [ -n "${current_urls[$i]}" ]; then
+                    # 允许跳过且有当前值，保留当前值
+                    new_urls[$i]="${current_urls[$i]}"
+                    echo ""
+                    echo -e "${COLOR_HINT}已保留当前配置${NC}"
+                    # 非最后一个 URL 时输出空行分隔
+                    [ $i -lt 3 ] && echo ""
+                    break
+                else
+                    # 不允许跳过或没有当前值
+                    echo ""
+                    print_error "SERVER_URL_$i 不能为空"
+                    echo ""
+                    continue
+                fi
+            fi
 
-        # 检查域名格式（必须包含至少一个点，且点后有内容）
-        local url_without_protocol="${ENV_SERVER_URL#*://}"
-        local domain="${url_without_protocol%%/*}"
+            # 验证 URL 格式
+            if ! validate_server_url "$input"; then
+                echo ""
+                continue
+            fi
 
-        if ! [[ "$domain" =~ \.[a-zA-Z]{2,} ]]; then
-            echo ""
-            print_error "域名格式无效，示例：example.com"
-            echo ""
-            continue
-        fi
+            # 去掉末尾多余的 /
+            input="${input%/}"
 
-        # 检查是否包含路径（域名后必须有 /xxx）
-        local path_part="${url_without_protocol#*/}"
-        if [ "$path_part" = "$url_without_protocol" ] || [ -z "$path_part" ]; then
-            echo ""
-            print_error "必须包含 API 路径，示例：https://example.com/api/report"
-            echo ""
-            continue
-        fi
+            # 检查是否与已输入的 URL 重复
+            local is_duplicate=false
+            for j in $(seq 1 $((i - 1))); do
+                if [ "$input" = "${new_urls[$j]}" ]; then
+                    is_duplicate=true
+                    echo ""
+                    print_error "URL 不能重复，当前配置与 SERVER_URL_$j 相同"
+                    echo ""
+                    break
+                fi
+            done
 
-        # 去掉末尾多余的 /
-        ENV_SERVER_URL="${ENV_SERVER_URL%/}"
+            if [ "$is_duplicate" = true ]; then
+                continue
+            fi
 
-        break
+            new_urls[$i]="$input"
+            # 非最后一个 URL 时输出空行分隔
+            [ $i -lt 3 ] && echo ""
+            break
+        done
     done
+
+    # 保存到全局变量
+    ENV_SERVER_URL_1="${new_urls[1]}"
+    ENV_SERVER_URL_2="${new_urls[2]}"
+    ENV_SERVER_URL_3="${new_urls[3]}"
 }
 
 # 配置 PING_SCHEDULE_FREQUENCY
@@ -1707,7 +1783,9 @@ generate_env_file() {
     replace_env_value "VPS_ID" "$ENV_VPS_ID" true
     replace_env_value "VPS_NAME" "$ENV_VPS_NAME" "$ENV_VPS_NAME_CONFIGURED"
     replace_env_value "HMAC_SECRET" "$ENV_HMAC_SECRET" true
-    replace_env_value "SERVER_URL" "$ENV_SERVER_URL" true
+    replace_env_value "SERVER_URL_1" "$ENV_SERVER_URL_1" true
+    replace_env_value "SERVER_URL_2" "$ENV_SERVER_URL_2" true
+    replace_env_value "SERVER_URL_3" "$ENV_SERVER_URL_3" true
     replace_env_value "PING_SCHEDULE_FREQUENCY" "$ENV_PING_FREQUENCY" true
     replace_env_value "PING_SCHEDULE_OFFSET" "$ENV_PING_OFFSET" "$ENV_PING_OFFSET_CONFIGURED"
 
@@ -3189,6 +3267,23 @@ show_current_config() {
     echo ""
 }
 
+# 显示三个 Server URL 的当前配置
+show_server_urls_config() {
+    echo -e "${COLOR_INFO}当前配置：${NC}"
+    echo ""
+
+    for i in 1 2 3; do
+        read_env_value "SERVER_URL_$i"
+        if [ "$ENV_VALUE_STATUS" = "configured" ]; then
+            echo -e "  SERVER_URL_$i: ${COLOR_VALUE}$ENV_VALUE${NC}"
+        else
+            echo -e "  SERVER_URL_$i: ${COLOR_HINT}未配置${NC}"
+        fi
+    done
+
+    echo ""
+}
+
 # 根据 target_id 获取监测目标的显示名称
 # 参数：$1=target_id
 # 返回：目标名称，找不到则返回原 target_id
@@ -3265,7 +3360,7 @@ do_modify_config() {
     echo -e "  ${COLOR_MENU}1.${NC} VPS ID ${COLOR_HINT}(VPS_ID)${NC}"
     echo -e "  ${COLOR_MENU}2.${NC} VPS 名称 ${COLOR_HINT}(VPS_NAME)${NC}"
     echo -e "  ${COLOR_MENU}3.${NC} HMAC 密钥 ${COLOR_HINT}(HMAC_SECRET)${NC}"
-    echo -e "  ${COLOR_MENU}4.${NC} Server 接收端 URL ${COLOR_HINT}(SERVER_URL)${NC}"
+    echo -e "  ${COLOR_MENU}4.${NC} Server 接收端 URL ${COLOR_HINT}(SERVER_URL_1/2/3)${NC}"
     echo ""
     echo -e "${COLOR_INFO}  调度配置${NC}"
     echo ""
@@ -3356,6 +3451,10 @@ modify_single_config() {
         HMAC_SECRET)
             show_current_config "$current_value" "$status" true
             ;;
+        SERVER_URL)
+            # 三个 URL 需要分别读取和显示
+            show_server_urls_config
+            ;;
         *)
             show_current_config "$current_value" "$status"
             ;;
@@ -3378,7 +3477,7 @@ modify_single_config() {
         VPS_ID) config_vps_id ;;
         VPS_NAME) config_vps_name ;;
         HMAC_SECRET) config_hmac_secret ;;
-        SERVER_URL) config_server_url ;;
+        SERVER_URL) config_server_url true ;;  # 修改配置时允许按 Enter 跳过
         PING_SCHEDULE_FREQUENCY) config_ping_frequency ;;
         PING_SCHEDULE_OFFSET) config_ping_offset ;;
         PING_MODE) config_ping_mode ;;
@@ -3433,8 +3532,22 @@ update_single_env_value() {
             is_configured=true
             ;;
         SERVER_URL)
-            value="$ENV_SERVER_URL"
-            is_configured=true
+            # 三个 URL 需要分别更新
+            for i in 1 2 3; do
+                local url_key="SERVER_URL_$i"
+                local url_value
+                case $i in
+                    1) url_value="$ENV_SERVER_URL_1" ;;
+                    2) url_value="$ENV_SERVER_URL_2" ;;
+                    3) url_value="$ENV_SERVER_URL_3" ;;
+                esac
+                if grep -q "^${url_key}=" "$ENV_FILE"; then
+                    sed -i "s|^${url_key}=.*|${url_key}=${url_value}|" "$ENV_FILE"
+                elif grep -q "^#${url_key}=" "$ENV_FILE"; then
+                    sed -i "s|^#${url_key}=.*|${url_key}=${url_value}|" "$ENV_FILE"
+                fi
+            done
+            return  # 跳过后续通用处理
             ;;
         PING_SCHEDULE_FREQUENCY)
             value="$ENV_PING_FREQUENCY"
